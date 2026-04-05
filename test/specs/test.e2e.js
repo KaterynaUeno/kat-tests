@@ -1,128 +1,134 @@
 import { expect } from "@wdio/globals";
 // import { assert } from "assert/strict";
 
-// describe('Webdriverio main page', () => {
-//     it('should have correct title ', async () => {
-//         await browser.url(`https://webdriver.io/`);
+//Hometask 1
+describe("Webdriverio main page", () => {
+  it("should have correct title ", async () => {
+    await browser.url(`https://webdriver.io/`);
 
-//         const title = await browser.getTitle();
-//         console.log(title)
+    const title = await browser.getTitle();
+    console.log(title);
 
-//         await expect(browser).toHaveTitle('WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO');
-//     })
-// })
+    await expect(browser).toHaveTitle(
+      "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO",
+    );
+  });
+});
 
-// describe("Google test", () => {
-//   it("should check search input", async () => {
-//     await browser.url("https://www.google.com/");
+//Hometask 2
+//Test case description is the file test-description.html
+describe("Google test", () => {
+  it("should check search input", async () => {
+    await browser.url("https://www.google.com/");
 
-//     const originalWindow = await browser.getWindowHandle();
+    const originalWindow = await browser.getWindowHandle();
 
-//     const searchInput = $('[name="q"]');
-//     await browser.waitUntil(async () => await searchInput.isDisplayed(), {
-//       timeout: 5000,
-//       timeoutMsg: "Search input not visible",
-//     });
-//     await searchInput.scrollIntoView();
-//     console.log("Scrolled into view");
+    const searchInput = $('[name="q"]');
+    await browser.waitUntil(async () => await searchInput.isDisplayed(), {
+      timeout: 5000,
+      timeoutMsg: "Search input not visible",
+    });
+    await searchInput.scrollIntoView();
+    console.log("Scrolled into view");
 
-//     const isVisible = await searchInput.isDisplayed();
-//     console.log("Is displayed:", isVisible);
+    const isVisible = await searchInput.isDisplayed();
+    console.log("Is displayed:", isVisible);
 
-//     const isEnabled = await searchInput.isEnabled();
-//     console.log("Is enabled:", isEnabled);
+    const isEnabled = await searchInput.isEnabled();
+    console.log("Is enabled:", isEnabled);
 
-//     const isFocused = await searchInput.isFocused();
-//     console.log("Is focused:", isFocused);
+    const isFocused = await searchInput.isFocused();
+    console.log("Is focused:", isFocused);
 
-//     const isClickable = await searchInput.isClickable();
-//     console.log("Is clickable:", isClickable);
+    const isClickable = await searchInput.isClickable();
+    console.log("Is clickable:", isClickable);
 
-//     await searchInput.waitForDisplayed();
-//     await searchInput.saveScreenshot("./screenshots/searchInput.png");
-//     console.log("Element screenshot saved");
+    await searchInput.waitForDisplayed();
+    await searchInput.saveScreenshot("./screenshots/searchInput.png");
+    console.log("Element screenshot saved");
 
-//     await browser.newWindow("https://www.google.com/maps/place/London");
-//     console.log("New window opened");
+    await browser.newWindow("https://www.google.com/maps/place/London");
+    console.log("New window opened");
 
-//     await browser.switchWindow("London");
-//     console.log("Switched to new window:", await browser.getTitle());
+    await browser.switchWindow("London");
+    console.log("Switched to new window:", await browser.getTitle());
 
-//     await browser.switchWindow(originalWindow);
-//     console.log("Switched back to original window:", await browser.getTitle());
-//   });
-// });
+    await browser.switchWindow(originalWindow);
+    console.log("Switched back to original window:", await browser.getTitle());
+  });
+});
 
-// describe("Testing GitHub pages", () => {
-//   it("should load the homepage and check the title", async () => {
-//     await browser.url("https://github.com/");
+//Hometask 3
+describe("Testing GitHub pages", () => {
+  it("should load the homepage and check the title", async () => {
+    await browser.url("https://github.com/");
 
-//     const title = await browser.getTitle();
-//     console.log("Page title:", title);
-//     expect(title).toContain("GitHub");
-//   });
+    const title = await browser.getTitle();
+    console.log("Page title:", title);
+    expect(title).toContain("GitHub");
+  });
 
-//   it("should navigate to login page", async () => {
-//     await browser.url("https://github.com/login");
+  it("should navigate to login page", async () => {
+    await browser.url("https://github.com/login");
 
-//     const url = await browser.getUrl();
-//     console.log("Current URL:", url);
-//     expect(url).toContain("/login");
-//   });
+    const url = await browser.getUrl();
+    console.log("Current URL:", url);
+    expect(url).toContain("/login");
+  });
 
-//   it("should show error on invalid login", async () => {
-//     await browser.url("https://github.com/login");
+  it("should show error on invalid login", async () => {
+    await browser.url("https://github.com/login");
 
-//     const usernameInput = $("#login_field");
-//     const passwordInput = $("#password");
-//     const signInButton = $('[name="commit"]');
+    const usernameInput = $("#login_field");
+    const passwordInput = $("#password");
+    const signInButton = $('[name="commit"]');
 
-//     await usernameInput.setValue("invaliduser123");
-//     await passwordInput.setValue("wrongpassword");
-//     await signInButton.click();
+    await usernameInput.setValue("invaliduser123");
+    await passwordInput.setValue("wrongpassword");
+    await signInButton.click();
 
-//     const errorMessage = $(".flash-error");
-//     await errorMessage.waitForDisplayed({ timeout: 5000 });
+    const errorMessage = $(".flash-error");
+    await errorMessage.waitForDisplayed({ timeout: 5000 });
 
-//     const errorText = await errorMessage.getText();
-//     console.log("Error message:", errorText);
-//     expect(errorText).toContain("Incorrect username or password");
-//   });
+    const errorText = await errorMessage.getText();
+    console.log("Error message:", errorText);
+    expect(errorText).toContain("Incorrect username or password");
+  });
 
-//   it("should search for a repository", async () => {
-//     await browser.url("https://github.com/search?q=angular&type=repositories");
+  it("should search for a repository", async () => {
+    await browser.url("https://github.com/search?q=angular&type=repositories");
 
-//     await browser.waitUntil(
-//       async () => {
-//         const url = await browser.getUrl();
-//         return url.includes("angular");
-//       },
-//       {
-//         timeout: 5000,
-//         timeoutMsg: "Search page did not load",
-//       },
-//     );
+    await browser.waitUntil(
+      async () => {
+        const url = await browser.getUrl();
+        return url.includes("angular");
+      },
+      {
+        timeout: 5000,
+        timeoutMsg: "Search page did not load",
+      },
+    );
 
-//     const url = await browser.getUrl();
-//     console.log("Search URL:", url);
-//     expect(url).toContain("angular");
+    const url = await browser.getUrl();
+    console.log("Search URL:", url);
+    expect(url).toContain("angular");
 
-//     const html = await browser.getPageSource();
-//     expect(html).toContain("angular");
-//   });
+    const html = await browser.getPageSource();
+    expect(html).toContain("angular");
+  });
 
-//   it("should navigate to GitHub explore page", async () => {
-//     await browser.url("https://github.com/explore");
+  it("should navigate to GitHub explore page", async () => {
+    await browser.url("https://github.com/explore");
 
-//     const url = await browser.getUrl();
-//     console.log("Explore URL:", url);
-//     expect(url).toContain("explore");
+    const url = await browser.getUrl();
+    console.log("Explore URL:", url);
+    expect(url).toContain("explore");
 
-//     const html = await browser.getPageSource();
-//     expect(html).toContain("Explore");
-//     console.log("Explore page loaded successfully");
-//   });
-// });
+    const html = await browser.getPageSource();
+    expect(html).toContain("Explore");
+    console.log("Explore page loaded successfully");
+  });
+});
 
 describe("GitHub tests", () => {
   it("should navigate to sign up page and fill in the form", async () => {
